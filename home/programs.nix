@@ -14,9 +14,28 @@
     enable = true;
 
     config = {
-      hwdec = "auto";
-      vo = "gpu";
+      vo = "gpu-next";
+      gpu-api = "opengl";
       gpu-context = "wayland";
+      hwdec = "auto-safe";
+
+      profile = "high-quality";
+
+      sub-font = "Adwaita Sans SemiBold";
+      sub-ass-override = "scale";
+      blend-subtitles = "yes";
+      demuxer-mkv-subtitle-preroll = "yes";
+
+      target-prim = "bt.709";
+      target-trc = "bt.1886";
+
+      tone-mapping = "auto";
+      inverse-tone-mapping = "no";
+
+      target-colorspace-hint = "auto";
+
+      osc = "no";
+      title-bar = "no";
     };
   };
 
