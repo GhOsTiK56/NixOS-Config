@@ -523,16 +523,6 @@ in
       wst-position-adjust = 0;
     };
 
-    "io/github/celluloid-player/celluloid" = {
-      always-append-to-playlist = true;
-      always-autohide-cursor = true;
-      always-open-new-window = true;
-      always-use-floating-controls = false;
-      last-folder-enable = true;
-      mpv-config-enable = true;
-      mpv-config-file = "file://${config.home.homeDirectory}/.config/mpv/mpv.conf";
-    };
-
     "org/gnome/nautilus/icon-view" = {
       default-zoom-level = "medium";
     };
