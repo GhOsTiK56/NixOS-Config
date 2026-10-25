@@ -29,10 +29,14 @@
       target-prim = "bt.709";
       target-trc = "bt.1886";
 
-      tone-mapping = "auto";
+      dither = "error-diffusion";
+      deband = "yes";
+      deband-iterations = "2";
+
+      tone-mapping = "bt.2446a";
       inverse-tone-mapping = "no";
 
-      target-colorspace-hint = "auto";
+      target-colorspace-hint = "no";
 
       osc = "no";
       title-bar = "no";

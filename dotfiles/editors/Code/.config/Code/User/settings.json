@@ -159,5 +159,35 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "diffEditor.renderSideBySide": true,
-  "diffEditor.useInlineViewWhenSpaceIsLimited": true
+  "diffEditor.useInlineViewWhenSpaceIsLimited": true,
+  "gitlens.graph.details.location": "bottom",
+  "gitlens.graph.changesColumn.enabled": true,
+  "redhat.telemetry.enabled": false,
+  "gitlens.graph.scrollMarkers.additionalTypes": [
+    "pullRequests",
+    "localBranches",
+    "remoteBranches",
+    "stashes",
+    "tags",
+    "wip"
+  ],
+  "gitlens.graph.sidebar.enabled": false,
+  "gitlens.views.commits.avatars": false,
+  "gitlens.views.commits.showStashes": true,
+  "gitlens.views.commits.showBranchComparison": false,
+  "gitlens.views.commits.files.layout": "tree",
+  "gitlens.graph.lanes.density": "expanded",
+  "gitlens.views.scm.grouped.views": {
+    "commits": true,
+    "branches": true,
+    "remotes": true,
+    "stashes": true,
+    "tags": true,
+    "worktrees": true,
+    "contributors": true,
+    "fileHistory": false,
+    "repositories": true,
+    "searchAndCompare": false,
+    "launchpad": true
+  },
 }
