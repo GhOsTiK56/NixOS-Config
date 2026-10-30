@@ -10,6 +10,11 @@
     };
   };
 
+  programs.zen-browser = {
+    enable = true;
+    setAsDefaultBrowser = true;
+  };
+
   programs.mpv = {
     enable = true;
 
