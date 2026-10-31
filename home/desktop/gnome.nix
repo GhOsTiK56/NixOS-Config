@@ -199,7 +199,7 @@ in
       disable-user-extensions = false;
       enabled-extensions = gnomeExtensionIds;
       favorite-apps = [
-        "firefox.desktop"
+        "zen-beta.desktop"
         "md.obsidian.Obsidian.desktop"
         "org.telegram.desktop.desktop"
         "org.gnome.Nautilus.desktop"
