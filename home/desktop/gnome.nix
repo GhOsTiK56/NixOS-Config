@@ -57,8 +57,8 @@ in
 
     "org/gnome/desktop/background" = {
       picture-options = "zoom";
-      picture-uri = "file://${config.home.homeDirectory}/.config/background";
-      picture-uri-dark = "file://${config.home.homeDirectory}/.config/background";
+      picture-uri = "file:///home/ghostik/.config/background";
+      picture-uri-dark = "file:///home/ghostik/.config/background";
     };
 
     "org/gnome/desktop/input-sources" = {
@@ -213,6 +213,8 @@ in
         "ca.edestcroix.Recordbox.desktop"
       ];
       last-selected-power-profile = "performance";
+      disabled-extensions = [];
+      welcome-dialog-last-shown-version = "50.4";
     };
 
     "org/gnome/shell/app-switcher" = {
@@ -285,6 +287,12 @@ in
 
     "org/gnome/shell/extensions/blur-my-shell/applications" = {
       pipeline = "pipeline_default";
+      blur = true;
+      corner-when-maximized = false;
+      dynamic-opacity = false;
+      opacity = 255;
+      static-blur = true;
+      whitelist = [ "zen-beta" ];
     };
 
     "org/gnome/shell/extensions/blur-my-shell/coverflow-alt-tab" = {
@@ -353,6 +361,7 @@ in
       spring-k = 1.0;
       x-tiles = 6.0;
       y-tiles = 6.0;
+      last-version = 33;
     };
 
     "org/gnome/shell/extensions/tilingshell" = {
@@ -377,10 +386,11 @@ in
       show-indicator = false;
       snap-assistant-threshold = 10;
       window-use-custom-border-color = false;
+      last-version-name-installed = "17.3";
     };
 
     "org/gnome/shell/extensions/vertical-workspaces" = {
-      aaa-loading-profile = false;
+      aaa-loading-profile = true;
       activate-settings-window = 2;
       always-activate-selected-window = false;
       animation-speed-factor = 131;
@@ -523,16 +533,6 @@ in
       wst-position-adjust = 0;
     };
 
-    "io/github/celluloid-player/celluloid" = {
-      always-append-to-playlist = true;
-      always-autohide-cursor = true;
-      always-open-new-window = true;
-      always-use-floating-controls = false;
-      last-folder-enable = true;
-      mpv-config-enable = true;
-      mpv-config-file = "file://${config.home.homeDirectory}/.config/mpv/mpv.conf";
-    };
-
     "org/gnome/nautilus/icon-view" = {
       default-zoom-level = "medium";
     };
@@ -594,6 +594,7 @@ in
       subtitle-languages = "ru";
       subtitle-scale = 1.0;
       volume = 100;
+      thumbnail-preview = true;
     };
 
     "org/gnome/shell/extensions/weather-oclock" = {
@@ -601,7 +602,7 @@ in
     };
 
     "org/gtk/gtk4/settings/file-chooser" = {
-      show-hidden = false;
+      show-hidden = true;
     };
 
     "org/gtk/settings/file-chooser" = {
@@ -615,6 +616,54 @@ in
       sort-directories-first = false;
       sort-order = "ascending";
       type-format = "category";
+      window-position = gvariant.mkTuple [ 26 23 ];
+      window-size = gvariant.mkTuple [ 986 438 ];
+    };
+
+    "ca/edestcroix/Recordbox" = {
+      album-sort = "Date (Most Recent)";
+      append-opened-tracks-to-queue = true;
+      background-playback = true;
+      external-lyrics-filename = "Same as Track";
+      external-lyrics-subdirectory = false;
+      group-albums = false;
+      height = 895;
+      image-cache-version = "1";
+      is-maximized = false;
+      lyrics-save-location = "Always Ask";
+      music-directory = "/home/ghostik/Music/Music-HARD";
+      playback-notifications = false;
+      playback-rate = "x1";
+      preferred-library = "artists";
+      recoloring-enabled = true;
+      restore-to-library = true;
+      rg-enabled = false;
+      rg-fallback = 0.0;
+      rg-mode = "album";
+      rg-preamp = 0.0;
+      rotate-cover = true;
+      round-cover = true;
+      show-all-artists = true;
+      show-remaining-time = false;
+      sync-on-startup = true;
+      visualizer-enabled = true;
+      watch-library = true;
+      width = 1632;
+    };
+
+    "org/gnome/shell/extensions/blur-my-shell/popup" = {
+      blur = true;
+      override-background = true;
+      pipeline = "pipeline_default_rounded";
+      static-blur = true;
+    };
+
+    "org/gnome/shell/weather" = {
+      automatic-location = true;
+    };
+
+    "org/gnome/tweaks" = {
+      show-extensions-notice = false;
     };
   };
 }
