@@ -65,6 +65,7 @@
     "nixpkgs",
     "nofail",
     "nohl",
+    "obsproject",
     "oclock",
     "openrgb",
     "optimise",
@@ -94,6 +95,7 @@
     "vfat",
     "Waybar",
     "wireplumber",
+    "wwmm",
     "xhci",
     "yazi"
   ]
