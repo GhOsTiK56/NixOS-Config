@@ -20,7 +20,7 @@
     pavucontrol          # PulseAudio/PipeWire volume control GUI.
 
     # --- Games ---
-    lutris               # Open-source gaming platform for Linux.
+    # lutris               # Open-source gaming platform for Linux.
     mangohud             # In-game overlay for FPS, frame times and hardware metrics.
 
     # --- Gnome ---

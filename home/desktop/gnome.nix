@@ -210,7 +210,6 @@ in
         "com.mitchellh.ghostty.desktop"
         "android-studio.desktop"
         "AmneziaVPN.desktop"
-        "net.lutris.Lutris.desktop"
         "steam.desktop"
         "vesktop.desktop"
         "bitwarden.desktop"
