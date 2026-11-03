@@ -34,7 +34,7 @@
       system = "x86_64-linux";
 
       specialArgs = {
-        inherit zapret-src;
+        inherit zapret-src tg-ws-proxy-src;
       };
 
       modules = [
@@ -44,7 +44,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            extraSpecialArgs = { inherit tg-ws-proxy-src zen-browser; };
+            extraSpecialArgs = { inherit zen-browser; };
             users.ghostik = ./home;
           };
         }

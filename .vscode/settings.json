@@ -80,6 +80,7 @@
     "openrgb",
     "optimise",
     "pathbar",
+    "pathlib",
     "pavucontrol",
     "pciutils",
     "piix",

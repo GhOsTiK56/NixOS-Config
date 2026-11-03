@@ -12,6 +12,7 @@
     ../../modules/hardware
     ../../modules/services/audio.nix
     ../../modules/services/zapret.nix
+    ../../modules/services/tg-ws-proxy.nix
     ../../modules/desktop/gnome.nix
     ../../modules/storage.nix
     ../../modules/fonts.nix

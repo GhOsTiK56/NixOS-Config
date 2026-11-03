@@ -7,7 +7,6 @@
     ./packages.nix
     ./programs.nix
     ./desktop/gnome.nix
-    ./services/tg-ws-proxy.nix
 
     zen-browser.homeModules.beta
   ];
