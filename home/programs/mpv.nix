@@ -1,20 +1,6 @@
 { ... }:
 
 {
-  programs.git = {
-    enable = true;
-
-    settings.user = {
-      name = "Ghostik";
-      email = "ghostik.tech@gmail.com";
-    };
-  };
-
-  programs.zen-browser = {
-    enable = true;
-    setAsDefaultBrowser = true;
-  };
-
   programs.mpv = {
     enable = true;
 
@@ -46,10 +32,5 @@
       osc = "no";
       title-bar = "no";
     };
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableFishIntegration = true;
   };
 }
