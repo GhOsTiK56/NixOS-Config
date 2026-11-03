@@ -18,15 +18,25 @@
       };
     };
 
+    zapret-src = {
+      url = "github:Sergeydigl3/zapret-discord-youtube-linux";
+      flake = false;
+    };
+
     tg-ws-proxy-src = {
       url = "github:Flowseal/tg-ws-proxy";
       flake = false;
     };
   };
 
-  outputs = { nixpkgs, home-manager, tg-ws-proxy-src, zen-browser, ... }: {
+  outputs = { nixpkgs, home-manager, zapret-src, tg-ws-proxy-src, zen-browser, ... }: {
     nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+
+      specialArgs = {
+        inherit zapret-src;
+      };
+
       modules = [
         ./hosts/desktop
         home-manager.nixosModules.default

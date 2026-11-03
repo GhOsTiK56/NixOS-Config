@@ -11,6 +11,7 @@
     ../../modules/users.nix
     ../../modules/hardware
     ../../modules/services/audio.nix
+    ../../modules/services/zapret.nix
     ../../modules/desktop/gnome.nix
     ../../modules/storage.nix
     ../../modules/fonts.nix

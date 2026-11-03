@@ -41,6 +41,7 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "tg-ws-proxy-src": "tg-ws-proxy-src",
+        "zapret-src": "zapret-src",
         "zen-browser": "zen-browser"
       }
     },
@@ -60,6 +61,22 @@
         "type": "github"
       }
     },
+    "zapret-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786960044,
+        "narHash": "sha256-UmsoF5YejczR87iv1fGU9LA4JXDz714dhop/Q4sMCBQ=",
+        "owner": "Sergeydigl3",
+        "repo": "zapret-discord-youtube-linux",
+        "rev": "69db771b527ba11ca71efe28728a7f9491eec352",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Sergeydigl3",
+        "repo": "zapret-discord-youtube-linux",
+        "type": "github"
+      }
+    },
     "zen-browser": {
       "inputs": {
         "home-manager": [
@@ -70,11 +87,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793615807,
-        "narHash": "sha256-2sHhKvrX5D2s8mFlC1hlffsKZQHZv73ObxReKQ6ESXk=",
+        "lastModified": 1793642042,
+        "narHash": "sha256-0z7OZFzumJlefJ+8zycS9G+8oB/ImtIP0yYzhjmhVjM=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "1add15a3a5188e584db1f543bb8b313cc6e1de99",
+        "rev": "81a04071a4bac9e7391fbaa0d7d6572e8a1ba481",
         "type": "github"
       },
       "original": {
