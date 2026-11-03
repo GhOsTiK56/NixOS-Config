@@ -2,6 +2,7 @@
 
 let
   stateDir = "/var/lib/zapret-discord-youtube";
+  sourceRevision = builtins.hashString "sha256" (toString zapret-src);
 
   zapretConfig = pkgs.writeText "zapret-conf.env" ''
     strategy=general_alt10.bat
@@ -14,13 +15,25 @@ let
   setup = pkgs.writeShellScript "zapret-setup" ''
     set -euo pipefail
 
-    if [ ! -x "${stateDir}/service.sh" ]; then
-      mkdir -p "${stateDir}"
+    sourceChanged=0
+
+    if [ ! -f "${stateDir}/.nix-source-revision" ] || \
+       [ "$(cat "${stateDir}/.nix-source-revision")" != "${sourceRevision}" ]; then
+
       cp -a "${zapret-src}/." "${stateDir}/"
-      chmod +x "${stateDir}/service.sh"
+
+      printf '%s\n' "${sourceRevision}" \
+        > "${stateDir}/.nix-source-revision"
+
+      sourceChanged=1
     fi
 
-    if [ ! -x "${stateDir}/nfqws" ] || [ ! -d "${stateDir}/zapret-latest" ]; then
+    chmod +x "${stateDir}/service.sh"
+
+    if [ "$sourceChanged" -eq 1 ] || \
+       [ ! -x "${stateDir}/nfqws" ] || \
+       [ ! -d "${stateDir}/zapret-latest" ]; then
+
       cd "${stateDir}"
       bash ./service.sh download-deps --default
     fi
@@ -28,6 +41,13 @@ let
     test -x "${stateDir}/nfqws"
     test -d "${stateDir}/zapret-latest"
   '';
+
+  cleanup = pkgs.writeShellScript "zapret-cleanup" ''
+    if [ -x "${stateDir}/service.sh" ]; then
+      exec ${pkgs.bash}/bin/bash "${stateDir}/service.sh" kill
+    fi
+  '';
+
 in
 {
   systemd.services.zapret-discord-youtube = {
@@ -66,9 +86,7 @@ in
         + "${stateDir}/service.sh run "
         + "--config ${zapretConfig}";
 
-      ExecStop =
-        "${pkgs.bash}/bin/bash "
-        + "${stateDir}/service.sh kill";
+      ExecStopPost = "${cleanup}";
 
       Restart = "on-failure";
       RestartSec = "5s";
