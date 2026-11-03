@@ -4,7 +4,7 @@
   home.stateVersion = "26.05";
 
   imports = [
-    ./desktop/gnome.nix
+    ./desktop/gnome
 
     ./packages/cli.nix
     ./packages/desktop.nix

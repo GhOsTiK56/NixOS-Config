@@ -1,13 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
-  inherit (lib.hm) gvariant;
-
-  keyboardSources = [
-    (gvariant.mkTuple [ "xkb" "us" ])
-    (gvariant.mkTuple [ "xkb" "ru" ])
-  ];
-
   gnomeExtensions = with pkgs.gnomeExtensions; [
     appindicator
     dash-to-dock
@@ -15,231 +8,37 @@ let
     just-perfection
     clipboard-indicator
     weather-oclock
-    # launch-new-instance
     compiz-windows-effect
     compiz-alike-magic-lamp-effect
     power-off-options
     vertical-workspaces
     tiling-shell
+    # launch-new-instance
     # window-is-ready-remover
   ];
-
-  gnomeExtensionIds =
-    map (extension: extension.extensionUuid) gnomeExtensions;
 in
 {
-  home.pointerCursor = {
-    enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Ice";
-    size = 24;
-    gtk.enable = true;
-    x11.enable = true;
-  };
-
   programs.gnome-shell = {
     enable = true;
     extensions = map (package: { inherit package; }) gnomeExtensions;
   };
 
   dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-      cursor-theme = "Bibata-Modern-Ice";
-      monospace-font-name = "Adwaita Mono 11";
-      enable-animations = true;
-      enable-hot-corners = false;
-    };
-
-    "org/gnome/GWeather4" = {
-      temperature-unit = "centigrade";
-    };
-
-    "org/gnome/desktop/background" = {
-      picture-options = "zoom";
-      picture-uri = "file:///home/ghostik/.config/background";
-      picture-uri-dark = "file:///home/ghostik/.config/background";
-    };
-
-    "org/gnome/desktop/input-sources" = {
-      sources = keyboardSources;
-      mru-sources = keyboardSources;
-      xkb-options = [ "grp:alt_shift_toggle" ];
-    };
-
-    "org/gnome/desktop/calendar" = {
-      week-start-day = "monday";
-    };
-
-    "org/gnome/desktop/datetime" = {
-      automatic-timezone = true;
-    };
-
-    "org/gnome/desktop/wm/preferences" = {
-      button-layout = "appmenu:minimize,maximize,close";
-      num-workspaces = 3;
-      resize-with-right-button = true;
-    };
-
-    "org/gnome/mutter" = {
-      center-new-windows = true;
-      dynamic-workspaces = false;
-      edge-tiling = false;
-    };
-
-    "org/gnome/mutter/keybindings" = {
-      toggle-tiled-left = [];
-      toggle-tiled-right = [];
-    };
-
-    "org/gnome/desktop/wm/keybindings" = {
-      close = [ "<Super>q" ];
-      maximize = [];
-      unmaximize = [];
-      minimize = [ "<Super>s" ];
-
-      move-to-workspace-down = [ "<Control><Shift><Alt>Down" ];
-      move-to-workspace-up = [ "<Control><Shift><Alt>Up" ];
-      move-to-workspace-left = [
-        "<Super><Shift>KP_Prior"
-        "<Super><Shift><Alt>Left"
-        "<Control><Shift><Alt>Left"
-        "<Super><Shift>Page_Up"
-      ];
-      move-to-workspace-right = [
-        "<Super><Shift>KP_Next"
-        "<Super><Shift><Alt>Right"
-        "<Control><Shift><Alt>Right"
-        "<Super><Shift>Page_Down"
-      ];
-
-      switch-to-workspace-down = [ "<Control><Alt>Down" ];
-      switch-to-workspace-up = [ "<Control><Alt>Up" ];
-      switch-to-workspace-left = [ "<Control><Super>h" "<Super>Page_Up" ];
-      switch-to-workspace-right = [ "<Control><Super>l" "<Super>Page_Down" ];
-    };
-
-    "org/gnome/desktop/search-providers" = {
-      disabled = [ "org.gnome.Epiphany.desktop" ];
-      enabled = [ "org.gnome.Weather.desktop" ];
-      sort-order = [
-        "org.gnome.Settings.desktop"
-        "org.gnome.Contacts.desktop"
-        "org.gnome.Nautilus.desktop"
-      ];
-    };
-
-    "org/gnome/settings-daemon/plugins/media-keys" = {
-      custom-keybindings = [
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
-      ];
-      screensaver = [ "<Alt><Super>l" ];
-    };
-
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      name = "Terminal";
-      command = "ghostty";
-      binding = "<Super>Return";
-    };
-
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      name = "File Explorer";
-      command = "nautilus";
-      binding = "<Super>e";
-    };
-
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-      name = "Screenshot";
-      command = "flameshot gui";
-      binding = "Print";
-    };
-
-    "org/gnome/shell/keybindings" = {
-      show-screenshot-ui = [ "<Control>Print" ];
-      toggle-quick-settings = [ "<Super>i" ];
-    };
-
-    "org/gnome/desktop/peripherals/mouse" = {
-      accel-profile = "flat";
-      speed = 0.13675200000000001;
-    };
-
-    "org/gnome/desktop/session" = {
-      idle-delay = gvariant.mkUint32 0;
-    };
-
-    "org/gnome/settings-daemon/plugins/power" = {
-      power-button-action = "interactive";
-      sleep-inactive-ac-timeout = 3600;
-      sleep-inactive-ac-type = "nothing";
-    };
-
-    "org/gnome/settings-daemon/plugins/color" = {
-      night-light-schedule-automatic = false;
-    };
-
-    "org/gnome/desktop/break-reminders/eyesight" = {
-      play-sound = true;
-    };
-
-    "org/gnome/desktop/break-reminders/movement" = {
-      duration-seconds = gvariant.mkUint32 300;
-      interval-seconds = gvariant.mkUint32 1800;
-      play-sound = true;
-    };
-
-    "org/gnome/desktop/sound" = {
-      event-sounds = true;
-      theme-name = "__custom";
-    };
-
     "org/gnome/shell" = {
       disable-user-extensions = false;
-      enabled-extensions = gnomeExtensionIds;
-      favorite-apps = [
-        "firefox.desktop"
-        "zen-beta.desktop"
-        "org.telegram.desktop.desktop"
-        "md.obsidian.Obsidian.desktop"
-        "org.gnome.TextEditor.desktop"
-        "org.gnome.Calculator.desktop"
-        "org.gnome.Nautilus.desktop"
-        "code.desktop"
-        "com.mitchellh.ghostty.desktop"
-        "android-studio.desktop"
-        "AmneziaVPN.desktop"
-        "steam.desktop"
-        "vesktop.desktop"
-        "bitwarden.desktop"
-        "com.obsproject.Studio.desktop"
-        "org.qbittorrent.qBittorrent.desktop"
-        "com.github.wwmm.easyeffects.desktop"
-        "com.github.johnfactotum.Foliate.desktop"
-        "org.nicotine_plus.Nicotine.desktop"
-        "ca.edestcroix.Recordbox.desktop"
-        "com.mattjakeman.ExtensionManager.desktop"
-        "org.gnome.Settings.desktop"
-      ];
-      last-selected-power-profile = "performance";
-      disabled-extensions = [];
-      welcome-dialog-last-shown-version = "50.4";
-    };
-
-    "org/gnome/shell/app-switcher" = {
-      current-workspace-only = false;
+      enabled-extensions =
+        map (extension: extension.extensionUuid) gnomeExtensions;
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
       apply-custom-theme = true;
-      background-opacity = 0.80000000000000004;
+      background-opacity = 0.8;
       click-action = "minimize-or-previews";
       custom-background-color = false;
       custom-theme-shrink = true;
       dash-max-icon-size = 48;
       dock-position = "BOTTOM";
-      height-fraction = 0.90000000000000002;
+      height-fraction = 0.9;
       hide-tooltip = false;
       hot-keys = false;
       icon-size-fixed = false;
@@ -291,7 +90,7 @@ in
     };
 
     "org/gnome/shell/extensions/blur-my-shell/appfolder" = {
-      brightness = 0.59999999999999998;
+      brightness = 0.6;
       sigma = 30;
     };
 
@@ -311,7 +110,7 @@ in
 
     "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
       blur = true;
-      brightness = 0.59999999999999998;
+      brightness = 0.6;
       pipeline = "pipeline_default_rounded";
       sigma = 30;
       static-blur = true;
@@ -330,7 +129,7 @@ in
     };
 
     "org/gnome/shell/extensions/blur-my-shell/panel" = {
-      brightness = 0.59999999999999998;
+      brightness = 0.6;
       corner-radius = 0;
       pipeline = "pipeline_default";
       sigma = 30;
@@ -347,8 +146,15 @@ in
     };
 
     "org/gnome/shell/extensions/blur-my-shell/window-list" = {
-      brightness = 0.59999999999999998;
+      brightness = 0.6;
       sigma = 30;
+    };
+
+    "org/gnome/shell/extensions/blur-my-shell/popup" = {
+      blur = true;
+      override-background = true;
+      pipeline = "pipeline_default_rounded";
+      static-blur = true;
     };
 
     "org/gnome/shell/extensions/appindicator" = {
@@ -382,11 +188,11 @@ in
       enable-tiling-system = true;
       enable-tiling-system-windows-suggestions = false;
       enable-window-border = false;
-      inner-gaps = gvariant.mkUint32 6;
+      inner-gaps = 6;
       layouts-json = "[{\"id\":\"Layout 2\",\"tiles\":[{\"x\":0,\"y\":0,\"width\":0.22,\"height\":1,\"groups\":[1]},{\"x\":0.22,\"y\":0,\"width\":0.56,\"height\":1,\"groups\":[1,2]},{\"x\":0.78,\"y\":0,\"width\":0.22,\"height\":1,\"groups\":[2]}]},{\"id\":\"496490\",\"tiles\":[{\"x\":0,\"y\":0,\"width\":0.0734375,\"height\":1,\"groups\":[1]},{\"x\":0.0734375,\"y\":0,\"width\":0.8531249999999999,\"height\":0.8625954198473282,\"groups\":[2,3,1]},{\"x\":0.9265625,\"y\":0,\"width\":0.07343749999999905,\"height\":1,\"groups\":[2]},{\"x\":0.0734375,\"y\":0.8625954198473282,\"width\":0.8531249999999999,\"height\":0.13740458015267176,\"groups\":[3,2,1]}]},{\"id\":\"Layout 3\",\"tiles\":[{\"x\":0,\"y\":0,\"width\":0.33,\"height\":1,\"groups\":[1]},{\"x\":0.33,\"y\":0,\"width\":0.67,\"height\":1,\"groups\":[1]}]},{\"id\":\"Layout 4\",\"tiles\":[{\"x\":0,\"y\":0,\"width\":0.67,\"height\":1,\"groups\":[1]},{\"x\":0.67,\"y\":0,\"width\":0.33,\"height\":1,\"groups\":[1]}]}]";
-      outer-gaps = gvariant.mkUint32 6;
+      outer-gaps = 6;
       overridden-settings = "{\"org.gnome.mutter.keybindings\":{\"toggle-tiled-right\":\"['<Super>Right']\",\"toggle-tiled-left\":\"['<Super>Left']\"},\"org.gnome.desktop.wm.keybindings\":{\"maximize\":\"['<Super>Up']\",\"unmaximize\":\"['<Super>Down', '<Alt>F5']\"},\"org.gnome.mutter\":{\"edge-tiling\":\"true\"}}";
-      quarter-tiling-threshold = gvariant.mkUint32 30;
+      quarter-tiling-threshold = 30;
       raise-together = false;
       selected-layouts = [
         [ "Layout 2" ]
@@ -543,137 +349,8 @@ in
       wst-position-adjust = 0;
     };
 
-    "org/gnome/nautilus/icon-view" = {
-      default-zoom-level = "medium";
-    };
-
-    "org/gnome/nautilus/preferences" = {
-      default-folder-viewer = "icon-view";
-      migrated-gtk-settings = true;
-      show-create-link = true;
-      show-delete-permanently = true;
-      show-image-thumbnails = "always";
-    };
-
-    "org/gnome/TextEditor" = {
-      highlight-current-line = true;
-      show-line-numbers = true;
-      show-map = true;
-      show-right-margin = false;
-      style-scheme = "Adwaita-dark";
-      use-system-font = true;
-    };
-
-    "com/github/johnfactotum/Foliate" = {
-      color-scheme = 4;
-    };
-
-    "com/github/johnfactotum/Foliate/library" = {
-      view-mode = "grid";
-    };
-
-    "com/github/johnfactotum/Foliate/viewer" = {
-      fold-sidebar = true;
-    };
-
-    "com/github/johnfactotum/Foliate/viewer/font" = {
-      default = gvariant.mkUint32 1;
-      default-size = gvariant.mkUint32 18;
-      minimum-size = gvariant.mkUint32 1;
-    };
-
-    "com/github/johnfactotum/Foliate/viewer/view" = {
-      gap = 0.050000000000000003;
-      hyphenate = true;
-      justify = true;
-      line-height = 1.5;
-      max-block-size = gvariant.mkUint32 1460;
-      max-column-count = gvariant.mkUint32 1;
-      max-inline-size = gvariant.mkUint32 1020;
-      override-font = false;
-    };
-
-    "io/github/diegopvlk/Cine" = {
-      audio-languages = "en, ja";
-      hwdec = true;
-      loop-state = "off";
-      save-session = true;
-      save-video-position = true;
-      subtitle-bg-color = "#97000000";
-      subtitle-color = "#ebebeb";
-      subtitle-languages = "ru";
-      subtitle-scale = 1.0;
-      volume = 100;
-      thumbnail-preview = true;
-    };
-
     "org/gnome/shell/extensions/weather-oclock" = {
       weather-after-clock = false;
-    };
-
-    "org/gtk/gtk4/settings/file-chooser" = {
-      show-hidden = true;
-    };
-
-    "org/gtk/settings/file-chooser" = {
-      date-format = "regular";
-      location-mode = "path-bar";
-      show-hidden = false;
-      show-size-column = true;
-      show-type-column = true;
-      sidebar-width = 179;
-      sort-column = "name";
-      sort-directories-first = false;
-      sort-order = "ascending";
-      type-format = "category";
-      window-position = gvariant.mkTuple [ 26 23 ];
-      window-size = gvariant.mkTuple [ 986 438 ];
-    };
-
-    "ca/edestcroix/Recordbox" = {
-      album-sort = "Date (Most Recent)";
-      append-opened-tracks-to-queue = true;
-      background-playback = true;
-      external-lyrics-filename = "Same as Track";
-      external-lyrics-subdirectory = false;
-      group-albums = false;
-      height = 895;
-      image-cache-version = "1";
-      is-maximized = false;
-      lyrics-save-location = "Always Ask";
-      music-directory = "/home/ghostik/Music/Music-HARD";
-      playback-notifications = false;
-      playback-rate = "x1";
-      preferred-library = "artists";
-      recoloring-enabled = true;
-      restore-to-library = true;
-      rg-enabled = false;
-      rg-fallback = 0.0;
-      rg-mode = "album";
-      rg-preamp = 0.0;
-      rotate-cover = true;
-      round-cover = true;
-      show-all-artists = true;
-      show-remaining-time = false;
-      sync-on-startup = true;
-      visualizer-enabled = true;
-      watch-library = true;
-      width = 1632;
-    };
-
-    "org/gnome/shell/extensions/blur-my-shell/popup" = {
-      blur = true;
-      override-background = true;
-      pipeline = "pipeline_default_rounded";
-      static-blur = true;
-    };
-
-    "org/gnome/shell/weather" = {
-      automatic-location = true;
-    };
-
-    "org/gnome/tweaks" = {
-      show-extensions-notice = false;
     };
   };
 }
