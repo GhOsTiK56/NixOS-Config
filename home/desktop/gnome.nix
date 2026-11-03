@@ -15,13 +15,13 @@ let
     just-perfection
     clipboard-indicator
     weather-oclock
-    launch-new-instance
+    # launch-new-instance
     compiz-windows-effect
     compiz-alike-magic-lamp-effect
     power-off-options
     vertical-workspaces
     tiling-shell
-    window-is-ready-remover
+    # window-is-ready-remover
   ];
 
   gnomeExtensionIds =
