@@ -13,6 +13,7 @@
     flameshot            # Screenshot capture and annotation tool.
     mangohud             # In-game overlay for FPS, frame times and hardware metrics.
     pinta                # Drawing/editing program modeled after Paint.NET.
+    onlyoffice-desktopeditors # Office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit local documents.
 
     freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
 
