@@ -13,8 +13,6 @@ let
     power-off-options
     vertical-workspaces
     tiling-shell
-    # launch-new-instance
-    # window-is-ready-remover
   ];
 in
 {
@@ -76,7 +74,7 @@ in
       ripple-box = true;
       startup-status = 0;
       weather = false;
-      window-demands-attention-focus = false;
+      window-demands-attention-focus = true;
       window-menu = true;
       window-menu-take-screenshot-button = true;
       window-picker-icon = true;
