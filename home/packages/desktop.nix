@@ -12,6 +12,7 @@
     qbittorrent          # BitTorrent client.
     flameshot            # Screenshot capture and annotation tool.
     mangohud             # In-game overlay for FPS, frame times and hardware metrics.
+    pinta                # Drawing/editing program modeled after Paint.NET.
 
     gnome-extension-manager # Installs and manages GNOME Shell extensions.
     gnome-tweaks         # Advanced GNOME desktop and appearance settings.
