@@ -18,6 +18,11 @@
       };
     };
 
+    freesmlauncher = {
+      url = "github:FreesmTeam/FreesmLauncher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zapret-src = {
       url = "github:Sergeydigl3/zapret-discord-youtube-linux";
       flake = false;
@@ -29,7 +34,16 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, zapret-src, tg-ws-proxy-src, zen-browser, ... }: {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    zen-browser,
+    zapret-src,
+    tg-ws-proxy-src,
+    freesmlauncher,
+    ...
+  }: {
     nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
@@ -44,7 +58,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            extraSpecialArgs = { inherit zen-browser; };
+            extraSpecialArgs = { inherit zen-browser freesmlauncher; };
             users.ghostik = ./home;
           };
         }

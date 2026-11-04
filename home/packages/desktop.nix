@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, freesmlauncher, ... }:
 
 {
   home.packages = with pkgs; [
@@ -13,6 +13,8 @@
     flameshot            # Screenshot capture and annotation tool.
     mangohud             # In-game overlay for FPS, frame times and hardware metrics.
     pinta                # Drawing/editing program modeled after Paint.NET.
+
+    freesmlauncher.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
 
     gnome-extension-manager # Installs and manages GNOME Shell extensions.
     gnome-tweaks         # Advanced GNOME desktop and appearance settings.
