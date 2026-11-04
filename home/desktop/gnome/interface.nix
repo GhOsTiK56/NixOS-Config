@@ -101,28 +101,25 @@ in
       disable-user-extensions = false;
 
       favorite-apps = [
-        "firefox.desktop"
         "zen-beta.desktop"
         "org.telegram.desktop.desktop"
         "md.obsidian.Obsidian.desktop"
         "org.gnome.TextEditor.desktop"
+        "com.github.PintaProject.Pinta.desktop"
         "org.gnome.Calculator.desktop"
         "org.gnome.Nautilus.desktop"
         "code.desktop"
         "com.mitchellh.ghostty.desktop"
         "android-studio.desktop"
+        "onlyoffice-desktopeditors.desktop"
         "AmneziaVPN.desktop"
+        "org.freesmlauncher.FreesmLauncher.desktop"
         "steam.desktop"
         "vesktop.desktop"
         "bitwarden.desktop"
         "com.obsproject.Studio.desktop"
-        "org.qbittorrent.qBittorrent.desktop"
-        "com.github.wwmm.easyeffects.desktop"
         "com.github.johnfactotum.Foliate.desktop"
-        "org.nicotine_plus.Nicotine.desktop"
         "ca.edestcroix.Recordbox.desktop"
-        "com.mattjakeman.ExtensionManager.desktop"
-        "org.gnome.Settings.desktop"
       ];
 
       last-selected-power-profile = "performance";
