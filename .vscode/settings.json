@@ -12,6 +12,7 @@
     "autofetch",
     "autohide",
     "autotiling",
+    "bettertrayicons",
     "bibata",
     "bitwarden",
     "bnext",
@@ -146,8 +147,10 @@
     "winesync",
     "wireplumber",
     "wwmm",
+    "xembed",
     "xhci",
     "yazi",
+    "Yzrdt",
     "zapret"
   ]
 }

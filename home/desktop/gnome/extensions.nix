@@ -1,31 +1,105 @@
 { pkgs, ... }:
 
 let
-  gnomeExtensions = with pkgs.gnomeExtensions; [
+  enabledExtensions = with pkgs.gnomeExtensions; [
     appindicator
-    dash-to-dock
     blur-my-shell
-    just-perfection
-    clipboard-indicator
-    weather-oclock
-    compiz-windows-effect
+    better-tray-icons
     compiz-alike-magic-lamp-effect
+    compiz-windows-effect
+    dash-to-dock
+    just-perfection
     power-off-options
-    vertical-workspaces
     tiling-shell
+    vertical-workspaces
+    weather-oclock
   ];
+
+  disabledExtensions = with pkgs.gnomeExtensions; [
+    clipboard-indicator
+    window-is-ready-remover
+  ];
+
+  allExtensions = enabledExtensions ++ disabledExtensions;
 in
 {
   programs.gnome-shell = {
     enable = true;
-    extensions = map (package: { inherit package; }) gnomeExtensions;
+    extensions = map (package: { inherit package; }) allExtensions;
   };
 
   dconf.settings = {
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions =
-        map (extension: extension.extensionUuid) gnomeExtensions;
+        map (extension: extension.extensionUuid) enabledExtensions;
+    };
+
+    "org/gnome/shell/extensions/bettertrayicons" = {
+      app-config-sync-meta = builtins.toJSON {
+        entries = {
+          # openrgb-wrapped = { m = 1794036502858; h = "3fe62c01"; };
+          # qbittorrent     = { m = 1794037797903; h = "1c0431ec"; };
+          # easyeffects     = { m = 1794036501058; h = "cf9e8dc0"; };
+          telegram        = { m = 1794037797903; h = "8c9b820d"; };
+          # "org.chromium.chromium" = { m = 1794036558172; h = "af6ce817"; };
+          # steam           = { m = 1794036502858; h = "adbaaa56"; };
+        };
+        tombstones = {};
+      };
+
+      app-configs = builtins.toJSON {
+        # openrgb-wrapped = {
+        #   title = ".openrgb-wrapped";
+        #   cached_icon_path = "/home/ghostik/.cache/bettertrayicons/icons/openrgb-wrapped.png";
+        #   priority = 20;
+        # };
+        # qbittorrent = {
+        #   title = "qBittorrent";
+        #   cached_icon_path = "/home/ghostik/.cache/bettertrayicons/icons/qbittorrent.png";
+        #   priority = 50;
+        # };
+        # easyeffects = {
+        #   title = "easyeffects";
+        #   detected_icon = "com.github.wwmm.easyeffects-symbolic";
+        #   seen_icons = [ "com.github.wwmm.easyeffects-symbolic" ];
+        #   priority = 10;
+        # };
+        telegram = {
+          title = "TelegramDesktop";
+          detected_icon = "org.telegram.desktop-symbolic";
+          seen_icons = [ "org.telegram.desktop-symbolic" "org.telegram.desktop-mute-symbolic" ];
+          priority = 100;
+        };
+        # "org.chromium.chromium" = {
+        #   title = "org.chromium.chromium";
+        #   icon_theme_path = "/tmp/org.chromium.Chromium.7Yzrdt";
+        #   cached_icon_path = "/home/ghostik/.cache/bettertrayicons/icons/org.chromium.chromium.png";
+        #   priority = 40;
+        # };
+        # steam = {
+        #   title = "Steam";
+        #   detected_icon = "steam_tray_mono";
+        #   icon_theme_path = "/home/ghostik/.local/share/Steam/public";
+        #   seen_icons = [ "steam_tray_mono" ];
+        #   priority = 30;
+        #   is_xembed = true;
+        # };
+      };
+
+      enable-custom-toggle-style = false;
+      enable-symbolic-icons = false;
+      enable-wine-support = true;
+      icon-size = 22;
+      keep-popup-after-click = false;
+      preview-show-margin = false;
+      preview-show-padding = false;
+      toggle-icon-size = 20;
+      toggle-inherit-icon-style = false;
+      toggle-position = "right";
+      tray-order = 0;
+      tray-position = "right";
+      visible-icon-limit = 1;
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
