@@ -158,75 +158,64 @@ in
 
     "org/gnome/shell/extensions/blur-my-shell" = {
       rounded-blur-found = false;
-      settings-version = 2;
+      settings-version = 7;
     };
-
+    
     "org/gnome/shell/extensions/blur-my-shell/appfolder" = {
-      brightness = 0.6;
-      sigma = 30;
+      pipeline = "pipeline_migrated_dynamic_blur";
     };
-
-    # "org/gnome/shell/extensions/blur-my-shell/applications" = {
-    #   pipeline = "pipeline_default";
-    #   blur = true;
-    #   corner-when-maximized = false;
-    #   dynamic-opacity = false;
-    #   opacity = 255;
-    #   static-blur = true;
-    #   whitelist = [ "zen-beta" ];
-    # };
-
+    
+    "org/gnome/shell/extensions/blur-my-shell/applications" = {
+      pipeline = "pipeline_default";
+    };
+    
     "org/gnome/shell/extensions/blur-my-shell/coverflow-alt-tab" = {
       pipeline = "pipeline_default";
     };
-
+    
     "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
       blur = true;
-      brightness = 0.6;
-      pipeline = "pipeline_default_rounded";
-      sigma = 30;
+      override-background = true;
+      pipeline = "pipeline_default";
       static-blur = true;
       style-dash-to-dock = 0;
-      override-background = true;
       unblur-in-overview = false;
     };
-
+    
+    "org/gnome/shell/extensions/blur-my-shell/dash-to-panel" = {
+      blur-original-panel = true;
+    };
+    
     "org/gnome/shell/extensions/blur-my-shell/lockscreen" = {
       pipeline = "pipeline_default";
     };
-
+    
     "org/gnome/shell/extensions/blur-my-shell/overview" = {
       pipeline = "pipeline_default";
       style-components = 0;
     };
-
+    
     "org/gnome/shell/extensions/blur-my-shell/panel" = {
-      brightness = 0.6;
       corner-radius = 0;
-      pipeline = "pipeline_default";
-      sigma = 30;
       force-light-text = false;
       override-background = true;
       override-background-dynamically = false;
+      pipeline = "pipeline_default";
       static-blur = true;
       style-panel = 0;
       unblur-in-overview = false;
     };
-
+    
+    "org/gnome/shell/extensions/blur-my-shell/popup" = {
+      pipeline = "pipeline_default";
+    };
+    
     "org/gnome/shell/extensions/blur-my-shell/screenshot" = {
       pipeline = "pipeline_default";
     };
-
+    
     "org/gnome/shell/extensions/blur-my-shell/window-list" = {
-      brightness = 0.6;
-      sigma = 30;
-    };
-
-    "org/gnome/shell/extensions/blur-my-shell/popup" = {
-      blur = true;
-      override-background = true;
-      pipeline = "pipeline_default_rounded";
-      static-blur = true;
+      pipeline = "pipeline_migrated_dynamic_blur";
     };
 
     "org/gnome/shell/extensions/appindicator" = {
