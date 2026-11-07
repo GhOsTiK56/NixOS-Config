@@ -158,7 +158,7 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "diffEditor.renderSideBySide": true,
+  "diffEditor.renderSideBySide": false,
   "diffEditor.useInlineViewWhenSpaceIsLimited": true,
   "gitlens.graph.details.location": "bottom",
   "gitlens.graph.changesColumn.enabled": true,
