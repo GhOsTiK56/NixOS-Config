@@ -115,7 +115,7 @@ in
         "AmneziaVPN.desktop"
         "org.freesmlauncher.FreesmLauncher.desktop"
         "steam.desktop"
-        "vesktop.desktop"
+        "discord.desktop"
         "bitwarden.desktop"
         "com.obsproject.Studio.desktop"
         "com.github.johnfactotum.Foliate.desktop"

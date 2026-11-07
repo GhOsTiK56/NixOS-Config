@@ -4,7 +4,7 @@
   home.packages = with pkgs; [
     firefox              # Web browser.
     telegram-desktop     # Telegram messaging client.
-    vesktop              # Discord client with support for Vencord.
+    discord              # All-in-one cross-platform voice and text chat for gamers.
     bitwarden-desktop    # Secure password manager.
     foliate              # E-book reader.
     localsend            # Transfers files between nearby devices over a local network.
