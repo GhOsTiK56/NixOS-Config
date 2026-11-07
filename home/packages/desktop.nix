@@ -2,7 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    firefox              # Web browser.
     telegram-desktop     # Telegram messaging client.
     discord              # All-in-one cross-platform voice and text chat for gamers.
     bitwarden-desktop    # Secure password manager.
