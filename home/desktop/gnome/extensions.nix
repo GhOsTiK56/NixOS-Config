@@ -92,15 +92,15 @@ in
       sigma = 30;
     };
 
-    "org/gnome/shell/extensions/blur-my-shell/applications" = {
-      pipeline = "pipeline_default";
-      blur = true;
-      corner-when-maximized = false;
-      dynamic-opacity = false;
-      opacity = 255;
-      static-blur = true;
-      whitelist = [ "zen-beta" ];
-    };
+    # "org/gnome/shell/extensions/blur-my-shell/applications" = {
+    #   pipeline = "pipeline_default";
+    #   blur = true;
+    #   corner-when-maximized = false;
+    #   dynamic-opacity = false;
+    #   opacity = 255;
+    #   static-blur = true;
+    #   whitelist = [ "zen-beta" ];
+    # };
 
     "org/gnome/shell/extensions/blur-my-shell/coverflow-alt-tab" = {
       pipeline = "pipeline_default";
