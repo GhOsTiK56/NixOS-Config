@@ -48,6 +48,7 @@
     obs-studio           # Screen recording and live streaming.
     ffmpeg               # Audio/video recording, conversion and streaming tools.
     ffmpegthumbnailer    # Generates video thumbnails for file managers.
+    flac                 # Library and tools for encoding and decoding the FLAC lossless audio file format.
 
     
     # --- Terminal and command-line tools ---
