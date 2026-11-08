@@ -9,6 +9,8 @@
     telegram-desktop     # Telegram messaging client.
     discord              # Voice, video and text chat client.
     bitwarden-desktop    # Password manager.
+    spotify              # Play music from the Spotify music service.
+    proton-vpn           # Official Proton VPN client.
     foliate              # E-book reader.
     localsend            # Transfers files between nearby devices over a local network.
     obsidian             # Markdown-based knowledge base and note-taking app.
