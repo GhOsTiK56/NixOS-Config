@@ -1,14 +1,17 @@
 {
   dconf.settings = {
+    # --- Mutter defaults ---
+    # Tiling Shell handles directional tiling, so disable Mutter's duplicates.
     "org/gnome/mutter/keybindings" = {
-      toggle-tiled-left = [];
-      toggle-tiled-right = [];
+      toggle-tiled-left = [ ];
+      toggle-tiled-right = [ ];
     };
 
+    # --- Window manager and workspace navigation ---
     "org/gnome/desktop/wm/keybindings" = {
       close = [ "<Super>q" ];
-      maximize = [];
-      unmaximize = [];
+      maximize = [ ];
+      unmaximize = [ ];
       minimize = [ "<Super>s" ];
 
       move-to-workspace-down = [ "<Control><Shift><Alt>Down" ];
@@ -40,6 +43,7 @@
       ];
     };
 
+    # --- Custom application shortcuts ---
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
@@ -68,6 +72,7 @@
       binding = "Print";
     };
 
+    # --- GNOME Shell shortcuts ---
     "org/gnome/shell/keybindings" = {
       show-screenshot-ui = [ "<Control>Print" ];
       toggle-quick-settings = [ "<Super>i" ];

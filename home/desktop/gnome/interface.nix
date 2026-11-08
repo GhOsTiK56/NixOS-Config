@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   inherit (lib.hm) gvariant;
@@ -7,8 +7,11 @@ let
     (gvariant.mkTuple [ "xkb" "us" ])
     (gvariant.mkTuple [ "xkb" "ru" ])
   ];
+
+  background = "file://${config.home.homeDirectory}/.config/background";
 in
 {
+  # Set the same cursor theme for GNOME, GTK and XWayland applications.
   home.pointerCursor = {
     enable = true;
     package = pkgs.bibata-cursors;
@@ -19,6 +22,7 @@ in
   };
 
   dconf.settings = {
+    # --- Global appearance ---
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       cursor-theme = "Bibata-Modern-Ice";
@@ -31,26 +35,14 @@ in
       temperature-unit = "centigrade";
     };
 
-    "org/gnome/desktop/background" = {
-      picture-options = "zoom";
-      picture-uri = "file:///home/ghostik/.config/background";
-      picture-uri-dark = "file:///home/ghostik/.config/background";
-    };
-
+    # --- Keyboard and input ---
     "org/gnome/desktop/input-sources" = {
       sources = keyboardSources;
       mru-sources = keyboardSources;
       xkb-options = [ "grp:alt_shift_toggle" ];
     };
 
-    "org/gnome/desktop/calendar" = {
-      week-start-day = "monday";
-    };
-
-    "org/gnome/desktop/datetime" = {
-      automatic-timezone = true;
-    };
-
+    # --- Window management and workspaces ---
     "org/gnome/desktop/wm/preferences" = {
       button-layout = "appmenu:minimize,maximize,close";
       num-workspaces = 3;
@@ -60,6 +52,8 @@ in
     "org/gnome/mutter" = {
       center-new-windows = true;
       dynamic-workspaces = false;
+
+      # Tiling Shell provides the tiling behavior and its own shortcut handling.
       edge-tiling = false;
     };
 
@@ -68,8 +62,15 @@ in
       speed = 0.13675200000000001;
     };
 
+    # --- Power and session behavior ---
     "org/gnome/desktop/session" = {
+      # Zero disables GNOME's idle timeout; power behavior is configured below.
       idle-delay = gvariant.mkUint32 0;
+    };
+
+    "org/gnome/desktop/datetime" = {
+      # Keep GNOME from changing the timezone configured by NixOS.
+      automatic-timezone = false;
     };
 
     "org/gnome/settings-daemon/plugins/power" = {
@@ -82,6 +83,7 @@ in
       night-light-schedule-automatic = false;
     };
 
+    # --- Break reminders ---
     "org/gnome/desktop/break-reminders/eyesight" = {
       play-sound = true;
     };
@@ -92,14 +94,14 @@ in
       play-sound = true;
     };
 
+    # --- Desktop sounds ---
     "org/gnome/desktop/sound" = {
       event-sounds = true;
       theme-name = "__custom";
     };
 
+    # --- GNOME Shell and application dock ---
     "org/gnome/shell" = {
-      disable-user-extensions = false;
-
       favorite-apps = [
         "zen-beta.desktop"
         "org.telegram.desktop.desktop"
@@ -123,11 +125,6 @@ in
       ];
 
       last-selected-power-profile = "performance";
-      welcome-dialog-last-shown-version = "50.4";
-    };
-
-    "org/gnome/shell/app-switcher" = {
-      current-workspace-only = false;
     };
 
     "org/gnome/shell/weather" = {

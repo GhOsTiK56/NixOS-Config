@@ -11,7 +11,6 @@
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
-    
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
@@ -23,6 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # These repositories are source inputs, not independent Nix flakes.
     zapret-src = {
       url = "github:Sergeydigl3/zapret-discord-youtube-linux";
       flake = false;
@@ -35,18 +35,18 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     home-manager,
     zen-browser,
+    freesmlauncher,
     zapret-src,
     tg-ws-proxy-src,
-    freesmlauncher,
     ...
   }: {
     nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
+      # Pass source repositories to the system modules that run them as services.
       specialArgs = {
         inherit zapret-src tg-ws-proxy-src;
       };
@@ -56,9 +56,15 @@
         home-manager.nixosModules.default
         {
           home-manager = {
+            # Reuse the system's nixpkgs instance and install HM packages system-wide.
             useGlobalPkgs = true;
             useUserPackages = true;
-            extraSpecialArgs = { inherit zen-browser freesmlauncher; };
+
+            # Pass flake inputs to Home Manager modules that need external packages.
+            extraSpecialArgs = {
+              inherit zen-browser freesmlauncher;
+            };
+
             users.ghostik = ./home;
           };
         }

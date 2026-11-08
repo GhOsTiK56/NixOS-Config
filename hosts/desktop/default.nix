@@ -1,21 +1,19 @@
 { ... }:
 
 {
+  # Keep this value at the release used when the system was first installed.
+  # It controls compatibility defaults and is not an upgrade target.
   system.stateVersion = "26.05";
 
   imports = [
     ./hardware-configuration.nix
-    ../../modules/nix.nix
-    ../../modules/boot.nix
-    ../../modules/networking.nix
-    ../../modules/users.nix
-    ../../modules/hardware
-    ../../modules/services/audio.nix
+
+    ../../modules/system.nix
+    ../../modules/hardware.nix
+    ../../modules/desktop.nix
+    ../../modules/storage.nix
+
     ../../modules/services/zapret.nix
     ../../modules/services/tg-ws-proxy.nix
-    ../../modules/desktop/gnome.nix
-    ../../modules/storage.nix
-    ../../modules/fonts.nix
-    ../../modules/programs.nix
   ];
 }

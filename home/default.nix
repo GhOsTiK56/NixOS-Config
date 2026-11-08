@@ -1,21 +1,15 @@
 { zen-browser, ... }:
 
 {
+  # Keep this aligned with the Home Manager version used on first installation.
   home.stateVersion = "26.05";
 
   imports = [
+    ./packages.nix
+    ./programs.nix
     ./desktop/gnome
 
-    ./packages/cli.nix
-    ./packages/desktop.nix
-    ./packages/development.nix
-    ./packages/media.nix
-
-    ./programs/git.nix
-    ./programs/mpv.nix
-    ./programs/zen-browser.nix
-    ./programs/zoxide.nix
-    
+    # The browser flake provides its own Home Manager module.
     zen-browser.homeModules.beta
   ];
 }
