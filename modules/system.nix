@@ -37,10 +37,13 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-
+  
+    # Use the latest Linux kernel available in the current nixpkgs revision.
+    kernelPackages = pkgs.linuxPackages_latest;
+  
     # Load the AMD GPU driver early during boot.
     initrd.kernelModules = [ "amdgpu" ];
-
+  
     # Use the swap partition as the hibernation resume device.
     resumeDevice = "/dev/disk/by-uuid/99ca6228-85a3-47f1-af55-b3cc6c8b47b0";
   };
