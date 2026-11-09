@@ -113,7 +113,7 @@ in
         "org.gnome.Nautilus.desktop"
         "code.desktop"
         "com.mitchellh.ghostty.desktop"
-        "android-studio.desktop"
+        # "android-studio.desktop"
         "onlyoffice-desktopeditors.desktop"
         "proton.vpn.app.gtk.desktop"
         "AmneziaVPN.desktop"

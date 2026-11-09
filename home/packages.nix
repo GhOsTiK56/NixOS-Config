@@ -26,15 +26,15 @@
     # --- Development tools ---
     vscode               # Code editor with a large extension ecosystem.
     neovim               # Extensible terminal-based text editor.
-    android-studio       # IDE for Android application development.
-    android-tools        # Android command-line tools such as adb and fastboot.
-    cmake                # Cross-platform build system.
-    flutter              # UI toolkit for cross-platform application development.
-    jdk17                # Java Development Kit for Android builds.
-    ninja                # Small, fast build system.
-    pkg-config           # Exposes compiler and linker flags for libraries.
-    gcc                  # C and C++ compiler toolchain.
-    gnumake              # Build automation using Makefiles.
+    # android-studio       # IDE for Android application development.
+    # android-tools        # Android command-line tools such as adb and fastboot.
+    # cmake                # Cross-platform build system.
+    # flutter              # UI toolkit for cross-platform application development.
+    # jdk17                # Java Development Kit for Android builds.
+    # ninja                # Small, fast build system.
+    # pkg-config           # Exposes compiler and linker flags for libraries.
+    # gcc                  # C and C++ compiler toolchain.
+    # gnumake              # Build automation using Makefiles.
     nodejs               # JavaScript runtime.
     python3              # Python interpreter.
     tree-sitter          # Incremental parsing library used by editor tooling.
