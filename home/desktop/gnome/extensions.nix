@@ -9,6 +9,7 @@ let
     compiz-alike-magic-lamp-effect
     compiz-windows-effect
     dash-to-dock
+    icon-matcher
     just-perfection
     power-off-options
     tiling-shell
