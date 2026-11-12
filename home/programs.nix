@@ -49,10 +49,6 @@
       tone-mapping = "bt.2446a";
       inverse-tone-mapping = "no";
       target-colorspace-hint = "auto";
-
-      # Hide MPV's on-screen controller and the window title bar.
-      osc = "no";
-      title-bar = "no";
     };
   };
 }
