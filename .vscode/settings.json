@@ -53,6 +53,7 @@
     "gnutar",
     "gsettings",
     "gvariant",
+    "gvfs",
     "httpx",
     "hwdec",
     "intellihide",

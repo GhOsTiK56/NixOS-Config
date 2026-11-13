@@ -1,22 +1,31 @@
 { ... }:
 
 {
-  # Optional data drives: the system can still boot when either drive is absent.
-  fileSystems."/mnt/Hard" = {
-    device = "/dev/disk/by-uuid/76ec0dda-3eff-471c-b786-d47bb2a745fb";
-    fsType = "ext4";
+  # Root
+  fileSystems."/" = { 
     options = [
-      "nofail"
-      "x-systemd.device-timeout=5s"
+      "x-gvfs-show"
     ];
   };
 
-  fileSystems."/mnt/SATA" = {
-    device = "/dev/disk/by-uuid/f341ffd2-442c-4add-90e8-7e5d6d8104ad";
+  # Optional data drives: the system can still boot when either drive is absent.
+  fileSystems."/mnt/Hard" = {
+    device = "/dev/disk/by-uuid/37d17ac1-2176-4c6e-8364-92cd054b7726";
     fsType = "ext4";
     options = [
       "nofail"
       "x-systemd.device-timeout=5s"
+      "x-gvfs-show"
+    ];
+  };
+
+  fileSystems."/mnt/Sata" = {
+    device = "/dev/disk/by-uuid/999e3b3a-5d65-41de-b6e7-a64ba2ca21c7";
+    fsType = "ext4";
+    options = [
+      "nofail"
+      "x-systemd.device-timeout=5s"
+      "x-gvfs-show"
     ];
   };
 }
