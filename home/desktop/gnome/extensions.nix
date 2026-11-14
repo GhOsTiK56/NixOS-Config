@@ -12,14 +12,10 @@ let
     just-perfection
     power-off-options
     tiling-shell
-    weather-oclock
     window-is-ready-remover
   ];
 
-  disabledExtensions = with pkgs.gnomeExtensions; [
-    appindicator
-    vertical-workspaces
-  ];
+  disabledExtensions = with pkgs.gnomeExtensions; [];
 
   allExtensions = enabledExtensions ++ disabledExtensions;
 in
