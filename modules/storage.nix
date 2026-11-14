@@ -1,14 +1,12 @@
 { ... }:
 
 {
-  # Root
   fileSystems."/" = { 
     options = [
       "x-gvfs-show"
     ];
   };
 
-  # Optional data drives: the system can still boot when either drive is absent.
   fileSystems."/mnt/Hard" = {
     device = "/dev/disk/by-uuid/37d17ac1-2176-4c6e-8364-92cd054b7726";
     fsType = "ext4";

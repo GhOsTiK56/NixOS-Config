@@ -11,7 +11,6 @@ let
   background = "file://${config.home.homeDirectory}/.config/background";
 in
 {
-  # Set the same cursor theme for GNOME, GTK and XWayland applications.
   home.pointerCursor = {
     enable = true;
     package = pkgs.bibata-cursors;
@@ -35,7 +34,6 @@ in
       temperature-unit = "centigrade";
     };
 
-    # --- Keyboard and input ---
     "org/gnome/desktop/input-sources" = {
       sources = keyboardSources;
       mru-sources = keyboardSources;
@@ -52,8 +50,6 @@ in
     "org/gnome/mutter" = {
       center-new-windows = true;
       dynamic-workspaces = false;
-
-      # Tiling Shell provides the tiling behavior and its own shortcut handling.
       edge-tiling = false;
     };
 
@@ -62,14 +58,11 @@ in
       speed = 0.13675200000000001;
     };
 
-    # --- Power and session behavior ---
     "org/gnome/desktop/session" = {
-      # Zero disables GNOME's idle timeout; power behavior is configured below.
       idle-delay = gvariant.mkUint32 0;
     };
 
     "org/gnome/desktop/datetime" = {
-      # Keep GNOME from changing the timezone configured by NixOS.
       automatic-timezone = false;
     };
 
@@ -83,7 +76,6 @@ in
       night-light-schedule-automatic = false;
     };
 
-    # --- Break reminders ---
     "org/gnome/desktop/break-reminders/eyesight" = {
       play-sound = true;
     };
@@ -94,13 +86,11 @@ in
       play-sound = true;
     };
 
-    # --- Desktop sounds ---
     "org/gnome/desktop/sound" = {
       event-sounds = true;
       theme-name = "__custom";
     };
 
-    # --- GNOME Shell and application dock ---
     "org/gnome/shell" = {
       favorite-apps = [
         "zen-beta.desktop"
@@ -113,7 +103,6 @@ in
         "org.gnome.Nautilus.desktop"
         "code.desktop"
         "com.mitchellh.ghostty.desktop"
-        # "android-studio.desktop"
         "onlyoffice-desktopeditors.desktop"
         "proton.vpn.app.gtk.desktop"
         "AmneziaVPN.desktop"

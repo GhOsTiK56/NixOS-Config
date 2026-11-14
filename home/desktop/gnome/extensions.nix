@@ -1,11 +1,10 @@
 { pkgs, ... }:
 
 let
-  # Extensions in this list are installed and enabled by dconf below.
   enabledExtensions = with pkgs.gnomeExtensions; [
-    appindicator
-    blur-my-shell
     better-tray-icons
+    blur-my-shell
+    clipboard-indicator
     compiz-alike-magic-lamp-effect
     compiz-windows-effect
     dash-to-dock
@@ -14,13 +13,12 @@ let
     power-off-options
     tiling-shell
     weather-oclock
+    window-is-ready-remover
   ];
 
-  # These remain installed so they can be enabled manually from Extension Manager.
   disabledExtensions = with pkgs.gnomeExtensions; [
+    appindicator
     vertical-workspaces
-    clipboard-indicator
-    window-is-ready-remover
   ];
 
   allExtensions = enabledExtensions ++ disabledExtensions;
@@ -38,7 +36,6 @@ in
     };
 
     # --- Better Tray Icons ---
-    # Keep Telegram's tray metadata so the extension can identify its symbolic icons.
     "org/gnome/shell/extensions/bettertrayicons" = {
       app-configs = builtins.toJSON {
         telegram = {
@@ -68,7 +65,7 @@ in
       events-button = false;
       weather = false;
       world-clock = false;
-      window-demands-attention-focus = true;
+      window-demands-attention-focus = false;
       startup-status = 0;
     };
 
@@ -78,37 +75,12 @@ in
       inner-gaps = 6;
       outer-gaps = 6;
 
-      # Keep layouts as structured Nix data so tile proportions are easy to edit.
       layouts-json = builtins.toJSON [
         {
-          id = "Layout 2";
+          id = "Layout 1";
           tiles = [
-            { x = 0; y = 0; width = 0.22; height = 1; groups = [ 1 ]; }
-            { x = 0.22; y = 0; width = 0.56; height = 1; groups = [ 1 2 ]; }
-            { x = 0.78; y = 0; width = 0.22; height = 1; groups = [ 2 ]; }
-          ];
-        }
-        {
-          id = "496490";
-          tiles = [
-            { x = 0; y = 0; width = 0.0734375; height = 1; groups = [ 1 ]; }
-            { x = 0.0734375; y = 0; width = 0.8531249999999999; height = 0.8625954198473282; groups = [ 2 3 1 ]; }
-            { x = 0.9265625; y = 0; width = 0.07343749999999905; height = 1; groups = [ 2 ]; }
-            { x = 0.0734375; y = 0.8625954198473282; width = 0.8531249999999999; height = 0.13740458015267176; groups = [ 3 2 1 ]; }
-          ];
-        }
-        {
-          id = "Layout 3";
-          tiles = [
-            { x = 0; y = 0; width = 0.33; height = 1; groups = [ 1 ]; }
-            { x = 0.33; y = 0; width = 0.67; height = 1; groups = [ 1 ]; }
-          ];
-        }
-        {
-          id = "Layout 4";
-          tiles = [
-            { x = 0; y = 0; width = 0.67; height = 1; groups = [ 1 ]; }
-            { x = 0.67; y = 0; width = 0.33; height = 1; groups = [ 1 ]; }
+            { x = 0; y = 0; width = 1; height = 0.93; groups = [ 2 3 1 ]; }
+            { x = 0; y = 0.93; width = 1; height = 0.07; groups = [ 3 2 1 ]; }
           ];
         }
       ];

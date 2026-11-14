@@ -6,7 +6,6 @@ let
 in
 {
   dconf.settings = {
-    # --- Files and file management ---
     "org/gnome/nautilus/icon-view" = {
       default-zoom-level = "medium";
     };
@@ -19,7 +18,6 @@ in
       show-image-thumbnails = "always";
     };
 
-    # --- GNOME Text Editor ---
     "org/gnome/TextEditor" = {
       highlight-current-line = true;
       show-line-numbers = true;
@@ -29,7 +27,6 @@ in
       use-system-font = true;
     };
 
-    # --- Cine video player ---
     "io/github/diegopvlk/Cine" = {
       audio-languages = "en, ja";
       hwdec = true;

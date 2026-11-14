@@ -3,10 +3,8 @@
 let
   stateDir = "/var/lib/zapret-discord-youtube";
 
-  # The Nix store path changes whenever the locked source revision changes.
   sourceRevision = builtins.hashString "sha256" (toString zapret-src);
 
-  # Keep local service options in one file instead of editing the upstream script.
   zapretConfig = pkgs.writeText "zapret-conf.env" ''
     strategy=general_alt10.bat
     interface=any
@@ -61,7 +59,6 @@ in
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
 
-    # Runtime tools used by service.sh and its dependency downloader.
     path = with pkgs; [
       bash
       coreutils
@@ -79,7 +76,6 @@ in
     ];
 
     serviceConfig = {
-      # systemd creates /var/lib/zapret-discord-youtube before ExecStartPre.
       StateDirectory = "zapret-discord-youtube";
       WorkingDirectory = stateDir;
 

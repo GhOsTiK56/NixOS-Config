@@ -1,7 +1,6 @@
 { pkgs, tg-ws-proxy-src, ... }:
 
 let
-  # Keep the proxy's Python dependencies isolated from the global Python setup.
   pythonEnv = pkgs.python3.withPackages (ps: with ps; [
     websockets
     requests
@@ -65,17 +64,14 @@ in
     after = [ "network-online.target" ];
 
     serviceConfig = {
-      # A transient identity avoids creating a dedicated persistent system user.
       DynamicUser = true;
 
-      # systemd makes the credential available only to this service at runtime.
       LoadCredential = "secret:/etc/tg-ws-proxy/secret";
 
       ExecStart = "${pythonEnv}/bin/python -B ${launcher}";
       Restart = "on-failure";
       RestartSec = "5s";
 
-      # Restrict filesystem access; the service only needs its credential and network.
       NoNewPrivileges = true;
       PrivateTmp = true;
       ProtectSystem = "strict";
