@@ -1,0 +1,127 @@
+{ config, lib, pkgs, ... }:
+
+let
+  inherit (lib.hm) gvariant;
+
+  keyboardSources = [
+    (gvariant.mkTuple [ "xkb" "us" ])
+    (gvariant.mkTuple [ "xkb" "ru" ])
+  ];
+
+  background = "file://${config.home.homeDirectory}/.config/background";
+in
+{
+  home.pointerCursor = {
+    enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      cursor-theme = "Bibata-Modern-Ice";
+      monospace-font-name = "Adwaita Mono 11";
+      enable-animations = true;
+      enable-hot-corners = false;
+    };
+
+    "org/gnome/GWeather4" = {
+      temperature-unit = "centigrade";
+    };
+
+    "org/gnome/desktop/input-sources" = {
+      sources = keyboardSources;
+      mru-sources = keyboardSources;
+      xkb-options = [ "grp:alt_shift_toggle" ];
+    };
+
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = "appmenu:minimize,maximize,close";
+      num-workspaces = 3;
+      resize-with-right-button = true;
+    };
+
+    "org/gnome/mutter" = {
+      center-new-windows = true;
+      dynamic-workspaces = false;
+      edge-tiling = false;
+    };
+
+    "org/gnome/desktop/peripherals/mouse" = {
+      accel-profile = "flat";
+      speed = 0.13675200000000001;
+    };
+
+    "org/gnome/desktop/session" = {
+      idle-delay = gvariant.mkUint32 0;
+    };
+
+    "org/gnome/desktop/datetime" = {
+      automatic-timezone = false;
+    };
+
+    "org/gnome/settings-daemon/plugins/power" = {
+      power-button-action = "interactive";
+      sleep-inactive-ac-timeout = 3600;
+      sleep-inactive-ac-type = "nothing";
+    };
+
+    "org/gnome/settings-daemon/plugins/color" = {
+      night-light-schedule-automatic = false;
+    };
+
+    "org/gnome/desktop/break-reminders/eyesight" = {
+      play-sound = true;
+    };
+
+    "org/gnome/desktop/break-reminders/movement" = {
+      duration-seconds = gvariant.mkUint32 300;
+      interval-seconds = gvariant.mkUint32 1800;
+      play-sound = true;
+    };
+
+    "org/gnome/desktop/sound" = {
+      event-sounds = true;
+      theme-name = "__custom";
+    };
+
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "zen-beta.desktop"
+        "org.telegram.desktop.desktop"
+        "md.obsidian.Obsidian.desktop"
+        "spotify.desktop"
+        "org.gnome.TextEditor.desktop"
+        "com.github.PintaProject.Pinta.desktop"
+        "org.gnome.Calculator.desktop"
+        "org.gnome.Nautilus.desktop"
+        "code.desktop"
+        "com.mitchellh.ghostty.desktop"
+        "onlyoffice-desktopeditors.desktop"
+        "proton.vpn.app.gtk.desktop"
+        "AmneziaVPN.desktop"
+        "org.freesmlauncher.FreesmLauncher.desktop"
+        "steam.desktop"
+        "discord.desktop"
+        "bitwarden.desktop"
+        "com.obsproject.Studio.desktop"
+        "com.github.johnfactotum.Foliate.desktop"
+        "ca.edestcroix.Recordbox.desktop"
+      ];
+
+      last-selected-power-profile = "performance";
+    };
+
+    "org/gnome/shell/weather" = {
+      automatic-location = true;
+    };
+
+    "org/gnome/tweaks" = {
+      show-extensions-notice = false;
+    };
+  };
+}
